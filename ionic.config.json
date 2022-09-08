@@ -1,0 +1,8 @@
+{
+  "name": "SkeletonAPP",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
