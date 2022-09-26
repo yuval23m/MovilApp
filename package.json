@@ -28,6 +28,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@ionic/storage-angular": "^3.0.6",
     "background-video": "^2.0.1",
     "gl-ionic-background-video": "^0.0.5",
     "ionic": "^4.1.2",
