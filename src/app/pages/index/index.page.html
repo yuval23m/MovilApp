@@ -5,8 +5,19 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-item>
+  <ion-label id="welcomeuser">Bienvenido/a {{user.usuario}}</ion-label>
+</ion-item>
+<ion-toolbar>
+  <ion-segment value="uno" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="uno" (click)="an2()" #person>
+      <ion-icon name="accessibility-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="dos" (click)="an1()" #car>
+      <ion-icon name="car-sport-outline" ></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 <ion-content>
-  <ion-item>
-    <ion-label id="welcomeuser">Bienvenido/a {{user.usuario}}</ion-label>
-  </ion-item>
+    <ion-router-outlet></ion-router-outlet>
 </ion-content>
