@@ -1,3 +1,4 @@
+import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -16,9 +17,8 @@ export class LoginPage implements OnInit {
     password: ""
   }
   
-  //variable para indicar el campo que falta
   field: string = "";
-  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController) { } // Se debe instanciar
+  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, private firestore: FirestoreService) { }
 
   ngOnInit() {
   }
@@ -75,5 +75,10 @@ export class LoginPage implements OnInit {
       duration: duration ? duration : 2000 //si no viene el parámetro el tiempo es 2000
     });
     toast.present();
+  }
+
+  //LEER COLECCION DE FIREBASE
+  obtenerViaje(){
+    this.firestore.leerViaje();
   }
 }
