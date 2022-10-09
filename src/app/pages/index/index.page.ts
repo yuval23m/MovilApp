@@ -35,7 +35,7 @@ export class IndexPage implements OnInit {
    .duration(1500)
    .iterations(1)
    .direction('alternate')
-   .fromTo('background', 'gray', 'var(--background)');
+   .fromTo('background', 'black', 'var(--background)');
    car.play()
   }
 //ANIMACION AL SELECCIONAR LA PERSONITA EN EL SEGMENTO QUE SE PONGA GRIS
@@ -45,7 +45,7 @@ export class IndexPage implements OnInit {
    .duration(1500)
    .iterations(1)
    .direction('alternate')
-   .fromTo('background', 'gray', 'var(--background)');
+   .fromTo('background', 'black', 'var(--background)');
    person.play()
   }
 
