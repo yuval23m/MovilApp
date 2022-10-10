@@ -10,16 +10,18 @@ export class FirestoreService {
 
   constructor(private firestore: AngularFirestore) { }
 
+  crearId(){
+    return this.firestore.createId(); 
+  }
+
   crearViaje(data: any, path: string, id: string) {
     const collection = this.firestore.collection(path);
     return collection.doc(id).set(data);
 }
 
-  leerViaje(){
-    console.log('leyendo coleccion')
-    this.firestore.collection('Viajes').valueChanges().subscribe( (res) =>{
-      console.log(res);
-    });
+  obtenerViaje<tipo>(path: string){
+    const collection = this.firestore.collection<tipo>(path);
+    return collection.valueChanges();
   }
 
 }

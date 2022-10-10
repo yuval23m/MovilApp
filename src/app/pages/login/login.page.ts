@@ -76,9 +76,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
-  //LEER COLECCION DE FIREBASE
-  obtenerViaje(){
-    this.firestore.leerViaje();
-  }
 }

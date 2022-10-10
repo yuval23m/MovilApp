@@ -4,8 +4,6 @@ import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 
 import { generateSlug } from "random-word-slugs";
-import { EMPTY } from 'rxjs';
-import { isEmpty } from '@firebase/util';
 
 @Component({
   selector: 'app-componente-dos',
@@ -15,9 +13,10 @@ import { isEmpty } from '@firebase/util';
 export class ComponenteDosComponent implements OnInit {
 
   viaje = {
-    asiento : 0,
+    asiento : null,
     destino : "",
-    valor : 0
+    valor : null,
+    id : ""
   }
 
 
@@ -29,9 +28,10 @@ export class ComponenteDosComponent implements OnInit {
 
   crearNuevoViaje(){
     this.alerta.showLoading('Guardando..')
-    const slug = generateSlug(1, {format: "title"});
+    const id = this.firestore.crearId();
     const path = 'Viajes'
-    this.firestore.crearViaje(this.viaje, path, slug).then((res)=>{
+    this.viaje.id = id
+    this.firestore.crearViaje(this.viaje, path, id).then((res)=>{
       console.log('Se agrego correctamente a la base de datos');
       this.alerta.cerrarLoading();
       this.alerta.presentAlert('Viaje guardado con exito!')
