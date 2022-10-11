@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ElementRef, ViewChild } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
+import { AnimationOptions } from 'ngx-lottie';
+import { AnimationItem } from 'lottie-web';
 
 @Component({
   selector: 'app-home',
@@ -10,36 +12,34 @@ import { AnimationController } from '@ionic/angular';
 })
 export class HomePage{
   dato:string;
-  @ViewChild('logo', { read: ElementRef, static: true }) logo: ElementRef;
-  @ViewChild('logo2', { read: ElementRef, static: true }) logo2: ElementRef;
+  @ViewChild('boton', { read: ElementRef, static: true }) boton: ElementRef;
+
+  //lottie
+  options: AnimationOptions = {
+    path: "/assets/1.json"
+  }
 
   constructor(private router:Router, private animationCtrl: AnimationController) { }
 
+    //lottie
+    animationCreated(animationItem: AnimationItem):void{
+      console.log(animationItem);
+    }
+ 
   siguiente(){
     let navigationExtras: NavigationExtras={
       state:{dato:this.dato}
     };
     this.router.navigate(['/login'],navigationExtras)
   }
+
   ngAfterViewInit() {
     const logo = this.animationCtrl.create()
-    .addElement(this.logo.nativeElement)
-    .duration(3000)
+    .addElement(this.boton.nativeElement)
+    .duration(6000)
     .iterations(1)
-    .fromTo('transform', 'translateX(100px)', 'translateX(0px)')
+    .fromTo('transform', 'translateY(100px)', 'translateX(0px)')
     .fromTo('opacity', '0.2', '1');
       logo.play();
-
-    const logo2 = this.animationCtrl.create()
-    .addElement(this.logo2.nativeElement)
-    .fill('none')
-    .duration(4000)
-    .keyframes([
-      { offset: 0, transform: 'scale(1)', opacity: '1' },
-      { offset: 0.5, transform: 'scale(1.2)', opacity: '0.5' },
-      { offset: 1, transform: 'scale(1)', opacity: '1' }
-    ]);
-    logo2.play()
   }
-
 }

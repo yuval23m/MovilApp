@@ -9,6 +9,9 @@ import { HomePageRoutingModule } from './home-routing.module';
 //background
 import 'gl-ionic-background-video';
 
+//lottie animacion
+import {LottieModule} from 'ngx-lottie'
+
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -16,7 +19,8 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    LottieModule
   ],
   declarations: [HomePage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

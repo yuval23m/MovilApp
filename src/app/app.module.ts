@@ -14,9 +14,18 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+//lottie
+import {LottieModule} from 'ngx-lottie'
+import player from 'lottie-web'
+
+export function playerFactory() {
+  return player;
+}
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, 
+  imports: [BrowserModule,
+    LottieModule.forRoot({player:playerFactory}), 
     IonicModule.forRoot(), 
     AppRoutingModule, 
     BrowserAnimationsModule, 
@@ -25,7 +34,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AngularFirestoreModule.enablePersistence(),],
 
   providers: [{ provide: RouteReuseStrategy, 
-    useClass: IonicRouteStrategy }],
+    useClass: IonicRouteStrategy ,}],
 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

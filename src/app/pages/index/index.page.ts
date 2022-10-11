@@ -17,6 +17,7 @@ export class IndexPage implements OnInit {
     this.activeroute.queryParams.subscribe(params => { 
       if (this.router.getCurrentNavigation().extras.state) { 
         this.user = this.router.getCurrentNavigation().extras.state.user;
+        this.router.navigate(['index/uno']);
       }else{this.router.navigate(["/login"])}
     });
   }
