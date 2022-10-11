@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     BrowserAnimationsModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule,],
+    AngularFirestoreModule.enablePersistence(),],
 
   providers: [{ provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy }],
