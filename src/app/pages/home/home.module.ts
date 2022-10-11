@@ -6,9 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
-//background
-import 'gl-ionic-background-video';
-
 //lottie animacion
 import {LottieModule} from 'ngx-lottie'
 
