@@ -1,0 +1,10 @@
+npm install @capacitor/android
+npx cap add android
+npm i @capacitor/android
+ionic integrations disable cordova
+npx cap sync 
+npx cap open android
+npm install @angular/fire firebase --save
+npm i ngx-lottie
+npm install @capacitor/google-maps
+npm install @capacitor/geolocation
