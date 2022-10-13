@@ -2,6 +2,7 @@ import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { Viajes } from 'src/app/interfaces/viajes';
 
+
 @Component({
   selector: 'app-componente-uno',
   templateUrl: './componente-uno.component.html',
@@ -11,7 +12,8 @@ export class ComponenteUnoComponent implements OnInit {
 
   viajes: Viajes[]=[];
 
-  constructor(private firestore: FirestoreService) { }
+  constructor(private firestore: FirestoreService) { 
+  }
 
   ngOnInit() {
     this.obtenerViajes();

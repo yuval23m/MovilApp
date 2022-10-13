@@ -2,8 +2,10 @@ import { AlertaService } from './../../services/alerta.service';
 import { Viajes } from './../../interfaces/viajes';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../environments/environment';
 
-import { generateSlug } from "random-word-slugs";
+//mapbox
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-componente-dos',
@@ -19,12 +21,40 @@ export class ComponenteDosComponent implements OnInit {
     id : ""
   }
 
+  loca = []=[];
 
-  constructor(private firestore: FirestoreService, private alerta: AlertaService) { }
+  public map: mapboxgl.Map;
+  public style = 'mapbox://styles/mapbox/streets-v11'
 
-  ngOnInit() {}
+
+  constructor(private firestore: FirestoreService, private alerta: AlertaService) { 
+    mapboxgl.accessToken = environment.MAPBOX_KEY
+  }
+
+  ngOnInit() {
+    console.log(this.loca);
+    
+  }
+
+  ionViewWillEnter(){
+   this.constrMap();
+  }
 
   
+
+  constrMap(){
+    this.map = new mapboxgl.Map({
+      container: 'mapa-box',
+      style: this.style,
+      zoom: 14,
+      center: [
+        -71.53316324636769,
+        -33.03387009443383
+      ]
+
+    });
+    
+  }
 
   crearNuevoViaje(){
     this.alerta.showLoading('Guardando..')

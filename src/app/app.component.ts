@@ -1,3 +1,4 @@
+import { FirestoreService } from './services/firestore.service';
 import { AlertaService } from './services/alerta.service';
 import { Component } from '@angular/core';
 
@@ -19,8 +20,6 @@ export class AppComponent {
   }
   obtenerUbi(){
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
       console.log('ubi ', resp);
       
      }).catch((error) => {
