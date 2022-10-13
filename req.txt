@@ -1,10 +1,17 @@
 npm install @capacitor/android
-npx cap add android
 npm i @capacitor/android
+//disable cordova
 ionic integrations disable cordova
+//android studio
+npx cap add android
 npx cap sync 
 npx cap open android
+//firebase
 npm install @angular/fire firebase --save
+//lottie
 npm i ngx-lottie
-npm install @capacitor/google-maps
-npm install @capacitor/geolocation
+//geolocation
+npm install cordova-plugin-geolocation 
+npm install @awesome-cordova-plugins/geolocation
+//mapbox
+npm install mapbox-gl --save
