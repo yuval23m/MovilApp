@@ -1,3 +1,4 @@
+import { Router, NavigationExtras } from '@angular/router';
 import { AlertaService } from './../../services/alerta.service';
 import { Viajes } from './../../interfaces/viajes';
 import { FirestoreService } from './../../services/firestore.service';
@@ -12,7 +13,7 @@ import * as mapboxgl from 'mapbox-gl';
   templateUrl: './componente-dos.component.html',
   styleUrls: ['./componente-dos.component.scss'],
 })
-export class ComponenteDosComponent implements OnInit {
+export class ComponenteDosComponent {
 
   viaje = {
     asiento : null,
@@ -21,39 +22,14 @@ export class ComponenteDosComponent implements OnInit {
     id : ""
   }
 
-  loca = []=[];
-
-  public map: mapboxgl.Map;
-  public style = 'mapbox://styles/mapbox/streets-v11'
 
 
-  constructor(private firestore: FirestoreService, private alerta: AlertaService) { 
-    mapboxgl.accessToken = environment.MAPBOX_KEY
+  constructor(private firestore: FirestoreService, private alerta: AlertaService, private router : Router) { 
   }
 
-  ngOnInit() {
-    console.log(this.loca);
-    
-  }
-
-  ionViewWillEnter(){
-   this.constrMap();
-  }
-
-  
-
-  constrMap(){
-    this.map = new mapboxgl.Map({
-      container: 'mapa-box',
-      style: this.style,
-      zoom: 14,
-      center: [
-        -71.53316324636769,
-        -33.03387009443383
-      ]
-
-    });
-    
+  verMap(){
+    let navigationExtras: NavigationExtras
+    this.router.navigate(['/map'],navigationExtras)
   }
 
   crearNuevoViaje(){

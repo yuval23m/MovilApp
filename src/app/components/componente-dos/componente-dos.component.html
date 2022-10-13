@@ -21,10 +21,11 @@
             <ion-button expand="full" (click)="crearNuevoViaje()">Crear viaje</ion-button>
           </ion-col>
         </ion-row>
-        <div id="map-container">
-          <div class="map" id="mapa-box"></div>
-        </div>
       </ion-card-content>
     </ion-card>
-    
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="verMap()">
+        <ion-icon name="locate-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>
