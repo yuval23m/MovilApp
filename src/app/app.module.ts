@@ -22,6 +22,9 @@ export function playerFactory() {
   return player;
 }
 
+//GEOLOCALIZACION
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
@@ -34,7 +37,8 @@ export function playerFactory() {
     AngularFirestoreModule.enablePersistence(),],
 
   providers: [{ provide: RouteReuseStrategy, 
-    useClass: IonicRouteStrategy ,}],
+    useClass: IonicRouteStrategy ,},
+    Geolocation],
 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
