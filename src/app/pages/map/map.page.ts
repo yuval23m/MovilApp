@@ -1,3 +1,4 @@
+import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 
 //mapbox
@@ -12,8 +13,9 @@ export class MapPage implements OnInit {
 
   public map: mapboxgl.Map;
   public style = 'mapbox://styles/mapbox/streets-v11'
+  public marker : mapboxgl.Marker
 
-  constructor() { 
+  constructor(private fire : FirestoreService) { 
     mapboxgl.accessToken = environment.MAPBOX_KEY
   }
 
@@ -29,12 +31,7 @@ export class MapPage implements OnInit {
       container: 'mapa-box',
       style: this.style,
       zoom: 14,
-      center: [
-        -71.53316324636769,
-        -33.03387009443383
-      ]
-
+      center: this.fire.locations[0],
     });
-    
   }
 }

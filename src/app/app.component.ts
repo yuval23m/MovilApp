@@ -13,7 +13,7 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private geolocation: Geolocation, private alerta : AlertaService, private platform : Platform) {
+  constructor(private geolocation: Geolocation, private alerta : AlertaService, private platform : Platform, private fire : FirestoreService) {
     this.platform.ready().then(async ()=>{
       this.obtenerUbi();
     });
@@ -21,7 +21,10 @@ export class AppComponent {
   obtenerUbi(){
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log('ubi ', resp);
-      
+      this.fire.locations[0]=[
+        resp.coords.longitude,
+        resp.coords.latitude 
+      ]
      }).catch((error) => {
        this.alerta.presentAlert(error);
        
