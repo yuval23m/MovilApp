@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<h1>PAGINA NO ENCONTRADA..</h1>
-<img src="../../../assets/images/notfound.png" alt="">
+<ion-content [fullscreen]="true">
+  <ng-lottie [options]="options" (animationCreated)="animationCreada($event)"></ng-lottie>
 </ion-content>
