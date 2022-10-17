@@ -20,7 +20,7 @@ export class AppComponent {
   }
   obtenerUbi(){
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('ubi ', resp);
+      console.log('ubicacion => ', resp);
       this.fire.locations[0]=[
         resp.coords.longitude,
         resp.coords.latitude 

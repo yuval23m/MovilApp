@@ -17,7 +17,6 @@ export class ComponenteUnoComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerViajes();
-    console.log(this.viajes)
   }
 
 
@@ -25,9 +24,6 @@ export class ComponenteUnoComponent implements OnInit {
     this.firestore.obtenerViaje<Viajes>('Viajes').subscribe(res => {
       console.log('prueba de lectura de bd', res);
       this.viajes = res;
-      console.log(this.viajes);
-      
-      
     });
   }
 }

@@ -23,7 +23,7 @@ export class HomePage{
 
     //lottie
     animationCreated(animationItem: AnimationItem):void{
-      console.log(animationItem);
+      console.log('animacion cargada exitosamente');
     }
  
   siguiente(){

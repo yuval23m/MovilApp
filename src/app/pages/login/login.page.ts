@@ -1,8 +1,10 @@
+import { AlertaService } from './../../services/alerta.service';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -18,10 +20,37 @@ export class LoginPage implements OnInit {
   }
   
   field: string = "";
-  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, private firestore: FirestoreService) { }
+  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, private firestore: FirestoreService, private api: ApiService, private aler : AlertaService) { }
 
   ngOnInit() {
   }
+
+  validarJson(){
+    this.api.getJson().subscribe((data)=>{
+      data.alumnos.forEach(element => {
+        if (element.username===this.user.usuario && element.password===this.user.password){
+          console.log('Usuario valido, ingresando..');
+          if (this.validateModel(this.user)) {
+            this.presentToast("Bienvenido, ingresando al sistema")
+            let navigationExtras: NavigationExtras = {
+              state: {
+                user: this.user
+              }
+            };
+            this.router.navigate(['/index'], navigationExtras);
+          }else{
+            this.presentAlert("INFO");
+          }
+        }else{
+          console.log('Usuario/Pass incorrecta');
+
+          
+          
+        }
+      });
+    });
+  }
+
   siguiente() {
     if (this.validateModel(this.user)) {
       this.presentToast("Bienvenido, ingresando al sistema")
