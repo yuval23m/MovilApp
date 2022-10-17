@@ -38,7 +38,7 @@ export class HomePage{
     .addElement(this.boton.nativeElement)
     .duration(6000)
     .iterations(1)
-    .fromTo('transform', 'translateY(100px)', 'translateX(0px)')
+    .fromTo('transform', 'translateY(100px)', 'translateX(10px)')
     .fromTo('opacity', '0.2', '1');
       logo.play();
   }
