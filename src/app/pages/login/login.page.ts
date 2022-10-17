@@ -25,6 +25,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  notfound(){
+    this.router.navigate(['/ola'])
+  }
+
   validarJson(){
     this.api.getJson().subscribe((data)=>{
       data.alumnos.forEach(element => {
