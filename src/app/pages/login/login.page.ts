@@ -31,44 +31,27 @@ export class LoginPage implements OnInit {
 
   validarJson(){
     this.api.getJson().subscribe((data)=>{
+      let isUser:boolean;
       data.alumnos.forEach(element => {
-        if (element.username===this.user.usuario && element.password===this.user.password){
-          console.log('Usuario valido, ingresando..');
-          if (this.validateModel(this.user)) {
-            this.presentToast("Bienvenido, ingresando al sistema")
-            let navigationExtras: NavigationExtras = {
-              state: {
-                user: this.user
-              }
-            };
-            this.router.navigate(['/index'], navigationExtras);
-          }else{
-            this.presentAlert("INFO");
-          }
-        }else{
-          console.log('Usuario/Pass incorrecta');
-
-          
+        if (element.username===this.user.usuario && element.password===this.user.password && this.validateModel(this.user)){
+          let navigationExtras: NavigationExtras = {
+            state: {
+              user: this.user
+            }
+          };
+          this.router.navigate(['/index'], navigationExtras);
+          this.presentToast('Ingresando el sistema..', 2000)
+          return isUser=true;
           
         }
       });
+      if (!isUser){
+        console.log("NO ES USUARIO");
+        this.aler.presentAlert('User/Pass incorrectos')
+      }
     });
   }
 
-  siguiente() {
-    if (this.validateModel(this.user)) {
-      this.presentToast("Bienvenido, ingresando al sistema")
-      let navigationExtras: NavigationExtras = {
-        state: {
-          user: this.user
-        }
-      };
-      this.router.navigate(['/index'], navigationExtras);
-    }else{
-      this.presentAlert("INFO");
-    }
-
-  }
 
   siguiente2(){
     let navigationExtras: NavigationExtras={
