@@ -14,6 +14,7 @@ export const environment = {
     measurementId: "G-597ZNG8572"
   },
   MAPBOX_KEY: 'pk.eyJ1Ijoic2FhdXZlIiwiYSI6ImNsOTZjeGhjZjF4dnkzbnRnZDJiNnd0Zm0ifQ.boZ0ZZhTm4HEg4oOrCvv0Q',
+  google_maps_api_key : 'AIzaSyCladJW11oKzvW-867Sy3I01AHps3bIDWY'
 };
 
 /*

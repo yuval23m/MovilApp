@@ -1,42 +1,42 @@
-import { Router } from '@angular/router';
-import { FirestoreService } from './../../services/firestore.service';
-import { Component, OnInit } from '@angular/core';
-
-//mapbox
-import * as mapboxgl from 'mapbox-gl';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {GoogleMap} from '@capacitor/google-maps'
 import { environment } from 'src/environments/environment';
+
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage implements OnInit {
+  @ViewChild('map')
+  mapRef: ElementRef<HTMLElement>;
+  newMap: GoogleMap;
 
-  public map: mapboxgl.Map;
-  public style = 'mapbox://styles/mapbox/streets-v11'
-  public marker : mapboxgl.Marker
-
-  constructor(private fire : FirestoreService, private route : Router) { 
-    mapboxgl.accessToken = environment.MAPBOX_KEY
+  center : any = {
+    lat : -33.4594048,
+    lng : -70.6576384
   }
+
+  constructor() { }
 
   ngOnInit() {
+    
   }
 
-  ionViewWillEnter(){
-   this.constrMap();
+  ngAfterViewInit() {
+    this.createMap()
   }
 
-  viajar(){
-    this.route.navigate(['/index/uno'])
-  }
-
-  constrMap(){
-    this.map = new mapboxgl.Map({
-      container: 'mapa-box',
-      style: this.style,
-      zoom: 14,
-      center: this.fire.locations[0],
+  async createMap() {
+    this.newMap = await GoogleMap.create({
+      id: 'my-cool-map',
+      element: this.mapRef.nativeElement,
+      apiKey: environment.google_maps_api_key,
+      config: {
+        center: this.center,
+        zoom: 13,
+      },
     });
   }
 }
