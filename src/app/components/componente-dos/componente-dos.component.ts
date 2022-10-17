@@ -5,9 +5,6 @@ import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from './../../../environments/environment';
 
-//mapbox
-import * as mapboxgl from 'mapbox-gl';
-
 @Component({
   selector: 'app-componente-dos',
   templateUrl: './componente-dos.component.html',
