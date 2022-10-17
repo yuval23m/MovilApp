@@ -22,7 +22,7 @@ export class ComponenteDosComponent {
     id : ""
   }
 
-
+  field="";
 
   constructor(private firestore: FirestoreService, private alerta: AlertaService, private router : Router) { 
   }
@@ -33,15 +33,30 @@ export class ComponenteDosComponent {
   }
 
   crearNuevoViaje(){
-    this.alerta.showLoading('Guardando..')
+    
     const id = this.firestore.crearId();
     const path = 'Viajes'
     this.viaje.id = id
-    this.firestore.crearViaje(this.viaje, path, id).then((res)=>{
-      console.log('Se agrego correctamente a la base de datos');
-      this.alerta.cerrarLoading();
-      this.alerta.presentAlert('Viaje guardado con exito!')
-    });
+    if(this.validateModel(this.viaje)){
+      this.alerta.showLoading('Guardando..')
+      this.firestore.crearViaje(this.viaje, path, id).then((res)=>{
+        console.log('Se agrego correctamente a la base de datos');
+        this.alerta.cerrarLoading();
+        this.alerta.presentAlert('Viaje guardado con exito!')
+      });
+    }else{
+      this.alerta.presentAlert('Rellene los campos porfavor')
+    }
+  }
+
+  validateModel(model: any) {
+    for (var [key, value] of Object.entries(model)) {
+      if (value == "") {
+        this.field = key;
+        return false;
+      }
+    }
+    return true;
   }
 
 }

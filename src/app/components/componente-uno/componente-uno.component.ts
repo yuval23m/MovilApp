@@ -1,6 +1,7 @@
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { Viajes } from 'src/app/interfaces/viajes';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,13 +13,16 @@ export class ComponenteUnoComponent implements OnInit {
 
   viajes: Viajes[]=[];
 
-  constructor(private firestore: FirestoreService) { 
+  constructor(private firestore: FirestoreService, private router : Router) { 
   }
 
   ngOnInit() {
     this.obtenerViajes();
   }
 
+  verRuta(){
+    this.router.navigate(['/map'])
+  }
 
   obtenerViajes(){
     this.firestore.obtenerViaje<Viajes>('Viajes').subscribe(res => {

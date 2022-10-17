@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class MapPage implements OnInit {
   public style = 'mapbox://styles/mapbox/streets-v11'
   public marker : mapboxgl.Marker
 
-  constructor(private fire : FirestoreService) { 
+  constructor(private fire : FirestoreService, private route : Router) { 
     mapboxgl.accessToken = environment.MAPBOX_KEY
   }
 
@@ -24,6 +25,10 @@ export class MapPage implements OnInit {
 
   ionViewWillEnter(){
    this.constrMap();
+  }
+
+  viajar(){
+    this.route.navigate(['/index/uno'])
   }
 
   constrMap(){
