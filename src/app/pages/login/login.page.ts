@@ -1,11 +1,10 @@
-import { AuthService } from './../../services/auth.service';
 import { AlertaService } from './../../services/alerta.service';
-import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
+import { GloginGuard } from 'src/app/guards/glogin.guard';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class LoginPage implements OnInit {
   
   field: string = "";
   constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, 
-              private api: ApiService, private aler : AlertaService, private auth : AuthService) { }
+              private api: ApiService, private aler : AlertaService, private guard : GloginGuard) { }
 
   ngOnInit() {
   }
@@ -41,8 +40,9 @@ export class LoginPage implements OnInit {
               user: this.user
             }
           };
+          console.log('Ingresado');
+          localStorage.setItem('ingresado','true');
           this.router.navigate(['/index'], navigationExtras);
-          this.auth.login()
           this.presentToast('Ingresando el sistema..', 2000)
           return isUser=true;
           

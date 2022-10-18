@@ -1,24 +1,23 @@
-import { AuthService } from './../services/auth.service';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GloginGuard implements CanActivate {
+  permiso : any;
 
-  constructor(private auth : AuthService, private router : Router){}
+  constructor( private router : Router){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-    if(this.auth.autenticado()){
-      return true;
-    }else{
-      this.router.navigate(['/login']);
-      return false;
-    }
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
+      if(localStorage.getItem('ingresado')){
+        return true;
+      }else{
+        this.router.navigate(['/login']);        
+        return false;
+      }
   }
-  
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'index',
-    loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule), canActivate : [GloginGuard]
+    loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule)
   },
   {
     path: 'forgot-pass',
@@ -22,11 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),canActivate : [GloginGuard]
   },
   {
     path: 'map',
-    loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule), canActivate : [GloginGuard]
+    loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
   },
   {
     path: '**',

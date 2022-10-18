@@ -1,4 +1,3 @@
-import { AuthService } from './services/auth.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -43,8 +42,7 @@ import { GloginGuard } from './guards/glogin.guard';
   providers: [{ provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy ,},
     Geolocation,
-    GloginGuard,
-    AuthService],
+    GloginGuard],
 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
