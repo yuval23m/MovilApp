@@ -3,6 +3,10 @@ import {GoogleMap} from '@capacitor/google-maps'
 import { environment } from 'src/environments/environment';
 
 
+
+//geo
+import { Geolocation } from '@capacitor/geolocation';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
@@ -38,5 +42,24 @@ export class MapPage implements OnInit {
         zoom: 13,
       },
     });
+    
+  }
+  async mygeo(){
+    Geolocation.getCurrentPosition().then(async (resp) => {
+      await this.newMap.setCamera({
+        coordinate: {
+          lat: resp.coords.latitude,
+          lng: resp.coords.longitude
+        },
+        zoom:15,
+      });
+      await this.newMap.addMarker({
+        coordinate: {
+          lat: resp.coords.latitude,
+          lng: resp.coords.longitude
+        }
+      });
+    });
+      
   }
 }

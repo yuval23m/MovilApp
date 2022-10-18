@@ -22,8 +22,7 @@ export function playerFactory() {
   return player;
 }
 
-//GEOLOCALIZACION
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+//GEOLOCALIZACION 
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
