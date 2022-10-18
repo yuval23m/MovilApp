@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { AlertaService } from './../../services/alerta.service';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
   }
   
   field: string = "";
-  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, private firestore: FirestoreService, private api: ApiService, private aler : AlertaService) { }
+  constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, 
+              private api: ApiService, private aler : AlertaService, private auth : AuthService) { }
 
   ngOnInit() {
   }
@@ -40,6 +42,7 @@ export class LoginPage implements OnInit {
             }
           };
           this.router.navigate(['/index'], navigationExtras);
+          this.auth.login()
           this.presentToast('Ingresando el sistema..', 2000)
           return isUser=true;
           

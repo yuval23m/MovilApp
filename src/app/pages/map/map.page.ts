@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 //geo
 import { Geolocation } from '@capacitor/geolocation';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',

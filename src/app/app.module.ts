@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -24,6 +25,8 @@ export function playerFactory() {
 
 //GEOLOCALIZACION 
 import { HttpClientModule } from '@angular/common/http';
+//GUARD
+import { GloginGuard } from './guards/glogin.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
 
   providers: [{ provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy ,},
-    Geolocation],
+    Geolocation,
+    GloginGuard,
+    AuthService],
 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
