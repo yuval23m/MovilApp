@@ -13,11 +13,18 @@ export class GloginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
-      if(localStorage.getItem('ingresado')){
-        return true;
-      }else{
-        this.router.navigate(['/login']);        
-        return false;
-      }
+      return this.checkAuth()
+  }
+
+  async checkAuth(){
+    this.permiso = await JSON.parse(localStorage.getItem('auth'));
+    console.log(this.permiso)
+    if(!this.permiso){
+      console.log('NO TIENE PERMISO');
+      this.router.navigate(['/login']);
+      return false;
+    }
+    console.log("si tiene permiso")
+    return true;
   }
 }

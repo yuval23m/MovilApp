@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),canActivate : [GloginGuard]
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)  
   },
   {
     path: 'map',
