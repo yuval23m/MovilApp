@@ -1,3 +1,4 @@
+import { StorageService } from './../../services/storage.service';
 import { AlertaService } from './../../services/alerta.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
@@ -21,7 +22,7 @@ export class LoginPage implements OnInit {
   
   field: string = "";
   constructor(private router: Router, public alertController:AlertController,public toastController: ToastController, 
-              private api: ApiService, private aler : AlertaService, private guard : GloginGuard) { }
+              private api: ApiService, private aler : AlertaService, private storage : StorageService) { }
 
   ngOnInit() {
   }
@@ -35,14 +36,15 @@ export class LoginPage implements OnInit {
       let isUser:boolean;
       data.alumnos.forEach(element => {
         if (element.username===this.user.usuario && element.password===this.user.password && this.validateModel(this.user)){
+          isUser = true;
           let navigationExtras: NavigationExtras = {
             state: {
               user: this.user
             }
           };
-          console.log('Ingresado');
-          localStorage.setItem('auth',JSON.stringify(isUser));
+          console.log(isUser);
           this.router.navigate(['/index'], navigationExtras);
+          this.storage.set('auth',isUser);
           this.presentToast('Ingresando el sistema..', 2000)
           return isUser=true;
           

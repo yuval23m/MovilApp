@@ -26,6 +26,7 @@ export function playerFactory() {
 import { HttpClientModule } from '@angular/common/http';
 //GUARD
 import { GloginGuard } from './guards/glogin.guard';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +38,8 @@ import { GloginGuard } from './guards/glogin.guard';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
-    HttpClientModule],
+    HttpClientModule,
+    IonicStorageModule.forRoot()],
 
   providers: [{ provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy ,},
