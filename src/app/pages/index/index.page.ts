@@ -53,4 +53,11 @@ export class IndexPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrar(){
+    localStorage.removeItem('auth')
+    this.router.navigate(['login'])
+  }
+
+  
+
 }
