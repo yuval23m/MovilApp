@@ -7,26 +7,33 @@ import { StorageService } from '../services/storage.service';
   providedIn: 'root'
 })
 export class GloginGuard implements CanActivate {
-  auth:any;
-
-  constructor(private router:Router, private storage:StorageService) { } 
-  canActivate(
+   constructor(private router:Router, private storage:StorageService) { } 
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkAuth();
+    state:  RouterStateSnapshot): Promise<boolean> {
+    const auth = this.storage.getAuth();
+    if (!auth){
+      await this.router.navigate(['/login']);
+    }
+    return auth;
   }
-  async checkAuth(){
+ /* async checkAuth(){
     try {
       this.auth = this.storage.getAuth();
+      console.log("chek: "+this.auth);
     } catch (error) {
       console.log(error)
     }
-    if(!this.auth){
-      console.log('NO TIENE PERMISO');
+    if (this.auth){
+      console.log("bien")
+      return true;
+    }
+   // if(this.auth == false){
+      console.log('mal');
+      console.log(this.auth);
       this.router.navigate(['/login']);
       return false;
-    }
-    console.log("si tiene permiso")
-    return true;
-  }
+   // }
+    
+  }*/
 }

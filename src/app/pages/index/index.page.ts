@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, AnimationController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-index',
@@ -13,7 +14,7 @@ export class IndexPage implements OnInit {
   @ViewChild('person', { read: ElementRef, static: true }) person: ElementRef;
   user:any;
 
-  constructor(private activeroute: ActivatedRoute, private router: Router, public alertController:AlertController, private animationCtrl: AnimationController) {
+  constructor(private activeroute: ActivatedRoute, private router: Router, public alertController:AlertController, private animationCtrl: AnimationController, private storage : StorageService) {
     this.activeroute.queryParams.subscribe(params => { 
       if (this.router.getCurrentNavigation().extras.state) { 
         this.user = this.router.getCurrentNavigation().extras.state.user;
@@ -54,7 +55,7 @@ export class IndexPage implements OnInit {
   }
 
   cerrar(){
-    localStorage.removeItem('auth')
+    this.storage.delete('auth')
     this.router.navigate(['login'])
   }
 

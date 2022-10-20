@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IndexPage } from './index.page';
 import { ComponenteDosComponent } from 'src/app/components/componente-dos/componente-dos.component';
+import { GloginGuard } from 'src/app/guards/glogin.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
     children:[
       {
       path:'uno',
-      component:ComponenteUnoComponent
+      component:ComponenteUnoComponent, canActivate : [GloginGuard]
       },
       {
         path:'dos',
