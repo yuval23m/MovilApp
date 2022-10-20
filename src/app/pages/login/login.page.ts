@@ -42,6 +42,7 @@ export class LoginPage implements OnInit {
               user: this.user
             }
           };
+          this.user.usuario = element.nombre
           console.log(isUser);
           this.router.navigate(['/index'], navigationExtras);
           localStorage.setItem('auth', 'true')
