@@ -45,7 +45,7 @@ export class MapPage implements OnInit {
     });
     
   }
-  async mygeo(){
+  async miUbi(){
     Geolocation.getCurrentPosition().then(async (resp) => {
       await this.newMap.setCamera({
         coordinate: {

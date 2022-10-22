@@ -1,31 +1,24 @@
-import { StorageService } from './../services/storage.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { StorageService } from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnonymousGuard implements CanActivate {
-  permiso : any;
+  constructor(
+    private router: Router,
+    private authService: StorageService,
+  ) {}
 
-  constructor(private storage : StorageService, private router : Router){}
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkAuth();
-  }
-  
-  checkAuth(){
-    this.permiso = this.storage.getAuth();
-    if (this.permiso == true){
-      this.router.navigate(['index'])
-      return true;
-    }else{
-      console.log('no paso anonymous');
-      
-      this.router.navigate(['login'])
-      return false;
+    state: RouterStateSnapshot): Promise<boolean> {
+    const isAuthenticated = await this.authService.getAuth();
+    if (isAuthenticated) {
+      await this.router.navigate(['/index']);
     }
+    return isAuthenticated;
   }
+
 }

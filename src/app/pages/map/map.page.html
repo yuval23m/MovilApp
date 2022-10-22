@@ -1,15 +1,12 @@
 <ion-header>
     <ion-toolbar>
       <img src="../../../assets/images/logo2.png" alt="">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/index/dos"></ion-back-button>
-      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <capacitor-google-maps #map></capacitor-google-maps>
     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button (click)="mygeo()">
+      <ion-fab-button (click)="miUbi()">
         <ion-icon name="locate-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>

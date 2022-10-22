@@ -4,6 +4,7 @@ import { Viajes } from './../../interfaces/viajes';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from './../../../environments/environment';
+import { totalUniqueSlugs } from 'random-word-slugs';
 
 @Component({
   selector: 'app-componente-dos',
@@ -40,6 +41,7 @@ export class ComponenteDosComponent {
         console.log('Se agrego correctamente a la base de datos');
         this.alerta.cerrarLoading();
         this.alerta.presentAlert('Viaje guardado con exito!')
+        this.router.navigate(['index/uno'])
       });
     }else{
       this.alerta.presentAlert('Rellene los campos porfavor')
