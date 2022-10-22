@@ -7,8 +7,7 @@ import { StorageService } from '../services/storage.service';
   providedIn: 'root'
 })
 export class GloginGuard implements CanActivate {
-  auth:any;
-
+  permiso:any;
   constructor(private router:Router, private storage:StorageService) { } 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,13 +16,15 @@ export class GloginGuard implements CanActivate {
   }
   async checkAuth(){
     try {
-      this.auth = this.storage.getAuth();
+      this.permiso = await this.storage.getAuth();
     } catch (error) {
       console.log(error)
     }
-    if(!this.auth){
+    if(this.permiso == false){
+      console.log(this.permiso);
+      
       console.log('NO TIENE PERMISO');
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
       return false;
     }
     console.log("si tiene permiso")

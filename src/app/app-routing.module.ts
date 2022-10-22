@@ -4,6 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)  
+  },
+  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
@@ -13,21 +17,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'index',
-    loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule),
-    canActivate : [GloginGuard]
-  },
-  {
     path: 'forgot-pass',
     loadChildren: () => import('./pages/forgot-pass/forgot-pass.module').then( m => m.ForgotPassPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)  
-  },
-  {
     path: 'map',
     loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule),
+    canActivate : [GloginGuard]
+  },
+  {
+    path: 'index',
+    loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule),
     canActivate : [GloginGuard]
   },
   {

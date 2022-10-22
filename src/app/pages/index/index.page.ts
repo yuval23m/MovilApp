@@ -1,3 +1,5 @@
+import { StorageService } from './../../services/storage.service';
+import { Storage } from '@ionic/storage-angular';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, AnimationController } from '@ionic/angular';
@@ -11,14 +13,18 @@ export class IndexPage implements OnInit {
 
   @ViewChild('car', { read: ElementRef, static: true }) car: ElementRef;
   @ViewChild('person', { read: ElementRef, static: true }) person: ElementRef;
-  user:any;
+  user = {
+    usuario: "",
+    password: ""
+  }
 
-  constructor(private activeroute: ActivatedRoute, private router: Router, public alertController:AlertController, private animationCtrl: AnimationController) {
+  constructor(private activeroute: ActivatedRoute, private router: Router, public alertController:AlertController, private animationCtrl: AnimationController,
+              private storage : StorageService) {
     this.activeroute.queryParams.subscribe(params => { 
       if (this.router.getCurrentNavigation().extras.state) { 
         this.user = this.router.getCurrentNavigation().extras.state.user;
         this.router.navigate(['index/uno']);
-      }else{this.router.navigate(["/login"])}
+      }else{this.router.navigate(["index"])}
     });
   }
   
@@ -53,4 +59,9 @@ export class IndexPage implements OnInit {
   ngOnInit() {
   }
 
+  salir(){
+    this.router.navigate(['login'])
+    this.storage.delete('auth');
+    
+  }
 }

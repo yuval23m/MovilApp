@@ -44,8 +44,8 @@ export class LoginPage implements OnInit {
           };
           this.user.usuario = element.nombre
           console.log(isUser);
-          this.router.navigate(['/index'], navigationExtras);
-          localStorage.setItem('auth', 'true')
+          this.router.navigate(['index'], navigationExtras);
+          this.storage.set('auth',isUser);
           this.presentToast('Ingresando el sistema..', 2000)
           return isUser=true;
           

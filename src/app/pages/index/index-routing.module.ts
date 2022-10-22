@@ -1,3 +1,4 @@
+import { GloginGuard } from 'src/app/guards/glogin.guard';
 import { ComponenteUnoComponent } from './../../components/componente-uno/componente-uno.component';
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
