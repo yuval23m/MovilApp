@@ -3,7 +3,6 @@ import { Storage } from '@ionic/storage-angular';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, AnimationController } from '@ionic/angular';
-import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-index',
