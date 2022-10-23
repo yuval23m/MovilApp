@@ -27,7 +27,7 @@ export class StorageService {
     this._storage?.get(key);
   }
   public getAuth(){
-    return this._storage?.get('auth');
+    return this._storage?.get("auth");
   }
   public delete(key:string){
     this._storage.remove(key);

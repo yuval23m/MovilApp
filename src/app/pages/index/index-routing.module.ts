@@ -14,7 +14,7 @@ const routes: Routes = [
     children:[
       {
       path:'uno',
-      component:ComponenteUnoComponent, canActivate : [GloginGuard]
+      component:ComponenteUnoComponent
       },
       {
         path:'dos',

@@ -16,7 +16,7 @@ export class AnonymousGuard implements CanActivate {
     state: RouterStateSnapshot): Promise<boolean> {
     const isAuthenticated = await this.authService.getAuth();
     if (isAuthenticated) {
-      await this.router.navigate(['/index']);
+      await this.router.navigate(['index/uno']);
     }
     return isAuthenticated;
   }

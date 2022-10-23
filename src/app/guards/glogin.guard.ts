@@ -11,11 +11,15 @@ export class GloginGuard implements CanActivate {
   async canActivate(
     route: ActivatedRouteSnapshot,
     state:  RouterStateSnapshot): Promise<boolean> {
-    const auth = this.storage.getAuth();
+    const auth = await localStorage.getItem('auth');
     if (!auth){
+      console.log(auth);
       await this.router.navigate(['/login']);
+    }else{
+      console.log(auth);
+      
+      return true;
     }
-    return auth;
   }
  /* async checkAuth(){
     try {

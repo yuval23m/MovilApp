@@ -24,7 +24,7 @@ export class IndexPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) { 
         this.user = this.router.getCurrentNavigation().extras.state.user;
         this.router.navigate(['index/uno']);
-      }else{this.router.navigate(["index"])}
+      }else{this.router.navigate(["index/uno"])}
     });
   }
   
@@ -61,7 +61,7 @@ export class IndexPage implements OnInit {
 
   salir(){
     this.router.navigate(['login'])
-    this.storage.delete('auth');
+    localStorage.removeItem('auth');
     
   }
 }
