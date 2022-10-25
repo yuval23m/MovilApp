@@ -9,10 +9,14 @@
         </ion-card-header>
       
         <ion-card-content>
+          <ion-label>Desde</ion-label>
+          <h4 id="desde">{{v.desde}}</h4>
           <ion-label>Destino</ion-label>
-          <h4 class="destino">{{v.destino}}</h4>
+          <h4 id="destino">{{v.destino}}</h4>
           <ion-label>Asientos</ion-label>
           <h4 class="asientos">{{v.asiento}}</h4>
+          <ion-label>Patente</ion-label>
+          <h4 class="patente" style="text-transform:uppercase">{{v.patente}}</h4>
           <ion-label>Precio</ion-label>
           <h4 class="valor">{{v.valor}}</h4>
           <ion-button (click)="verRuta()">Tomar Viaje</ion-button>

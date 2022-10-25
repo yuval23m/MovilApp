@@ -33,4 +33,5 @@ export class AlertaService {
   async cerrarLoading() {
     await this.loading.dismiss();
   }
+  
 }

@@ -1,33 +1,74 @@
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertaService } from './../../services/alerta.service';
-import { Viajes } from './../../interfaces/viajes';
 import { FirestoreService } from './../../services/firestore.service';
-import { Component, OnInit } from '@angular/core';
-import { environment } from './../../../environments/environment';
-import { totalUniqueSlugs } from 'random-word-slugs';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+
+import { Geolocation } from '@capacitor/geolocation';
+
+declare const google;
 
 @Component({
   selector: 'app-componente-dos',
   templateUrl: './componente-dos.component.html',
   styleUrls: ['./componente-dos.component.scss'],
 })
-export class ComponenteDosComponent {
+export class ComponenteDosComponent implements AfterViewInit{
 
+
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+  ///
   viaje = {
     asiento : null,
+    desde : "",
     destino : "",
     valor : null,
+    patente : "",
     id : ""
   }
 
-  field="";
-
-  constructor(private firestore: FirestoreService, private alerta: AlertaService, private router : Router) { 
+  coords = {
+    lat : null,
+    lng : null
   }
 
-  verMap(){
-    let navigationExtras: NavigationExtras
-    this.router.navigate(['/map'],navigationExtras)
+  field = "";
+
+  @ViewChild('mapElement', {static:false} ) mapElement; 
+
+  constructor(private firestore : FirestoreService, private alerta : AlertaService, private router : Router) { }
+
+
+  ngAfterViewInit(): void {
+    this.loadMapDirections()
+  }
+
+  loadMapDirections(){
+    const map = new google.maps.Map(this.mapElement.nativeElement,
+      {
+        zoom: 18    ,
+        center: { lat: -33.0335543, lng: -71.534139 },
+      }
+    );
+  
+    this.directionsRenderer.setMap(map);
+  }
+
+  calculateAndDisplayRoute() {
+    this.directionsService
+      .route({
+        origin: {
+          query: this.viaje.desde,
+        },
+        destination: {
+          query: this.viaje.destino,
+        },
+        travelMode: google.maps.TravelMode.DRIVING,
+      })
+      .then((response) => {
+        this.directionsRenderer.setDirections(response);
+      })
+      .catch((e) => window.alert("Directions request failed due to " + status));
   }
 
   crearNuevoViaje(){
@@ -57,5 +98,6 @@ export class ComponenteDosComponent {
     }
     return true;
   }
+
 
 }

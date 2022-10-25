@@ -1,31 +1,37 @@
+  
 <ion-content>
-    <ion-card>
-      <ion-card-header>
-        <ion-title>Crear viaje</ion-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item lines="full">
-          <ion-label position="floating">Asientos:</ion-label>
-          <ion-input [(ngModel)]="viaje.asiento"></ion-input>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-label position="floating">Destino:</ion-label>
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Crear viaje</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="full">
+        <ion-label position="floating">Asientos:</ion-label>
+        <ion-input type="number" [(ngModel)]="viaje.asiento"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Desde:</ion-label>
+        <ion-input type="text" [(ngModel)]="viaje.desde"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+          <ion-label position="floating">Hacia:</ion-label>
           <ion-input type="text" [(ngModel)]="viaje.destino"></ion-input>
-        </ion-item>
-        <ion-item lines="full">
-            <ion-label position="floating">Precio:</ion-label>
-            <ion-input type="number" [(ngModel)]="viaje.valor"></ion-input>
-        </ion-item>
-        <ion-row>
-          <ion-col>
-            <ion-button expand="full" (click)="crearNuevoViaje()">Crear viaje</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="verMap()">
-        <ion-icon name="locate-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </ion-content>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Patente auto:</ion-label>
+        <ion-input type="text" [(ngModel)]="viaje.patente"></ion-input>
+    </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Precio:</ion-label>
+        <ion-input type="number" [(ngModel)]="viaje.valor"></ion-input>
+    </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" (click)="crearNuevoViaje()">Crear viaje</ion-button>
+          <ion-button expand="full" (click)="calculateAndDisplayRoute()">Ruta</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <div #mapElement class="map"></div>
+</ion-content>
