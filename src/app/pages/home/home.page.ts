@@ -4,6 +4,7 @@ import { ElementRef, ViewChild } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -19,18 +20,23 @@ export class HomePage{
     path: "/assets/1.json"
   }
 
-  constructor(private router:Router, private animationCtrl: AnimationController) { }
+  constructor(private router:Router, private animationCtrl: AnimationController, private authService: StorageService) { }
 
     //lottie
     animationCreated(animationItem: AnimationItem):void{
       console.log('animacion cargada exitosamente');
     }
  
-  siguiente(){
+  async siguiente(){
     let navigationExtras: NavigationExtras={
       state:{dato:this.dato}
     };
-    this.router.navigate(['/login'],navigationExtras)
+    const isAuthenticated = await localStorage.getItem('auth');
+    if (isAuthenticated) {
+      await this.router.navigate(['index/uno']);
+    }else{
+      await this.router.navigate(['login'])
+    }
   }
 
   ngAfterViewInit() {
