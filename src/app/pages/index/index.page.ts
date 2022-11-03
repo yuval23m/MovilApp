@@ -18,6 +18,7 @@ export class IndexPage implements OnInit {
     password: ""
   }
 
+
   constructor(private activeroute: ActivatedRoute, private router: Router, public alertController:AlertController, private animationCtrl: AnimationController,
               private storage : StorageService) {
     this.activeroute.queryParams.subscribe(params => { 
@@ -32,6 +33,7 @@ export class IndexPage implements OnInit {
   segmentChanged($event){
     let direccion=$event.detail.value;
     console.log(direccion);
+    localStorage.setItem('comp', direccion)
     this.router.navigate(['index/'+direccion]);
   }
 
@@ -57,6 +59,12 @@ export class IndexPage implements OnInit {
   }
 
   ngOnInit() {
+    this.router.navigate(['index/'+localStorage.getItem('comp')])
+    if(localStorage.getItem('comp')=='uno'){
+      this.an2()
+    }if(localStorage.getItem('comp')=='dos'){
+      this.an1()
+    }
   }
 
   salir(){
