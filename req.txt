@@ -11,7 +11,10 @@ npm install @angular/fire firebase --save
 //lottie
 npm i ngx-lottie
 //geolocation
-npm install cordova-plugin-geolocation 
-npm install @awesome-cordova-plugins/geolocation
-//mapbox
-npm install mapbox-gl --save
+npm install @capacitor/geolocation
+//google maps
+npm install @capacitor/google-maps
+//ionic storage
+IonicStorageModule.forRoot()
+//angular google maps para google.maps 
+npm i @angular/google-maps

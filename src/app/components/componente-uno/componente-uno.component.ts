@@ -26,11 +26,9 @@ export class ComponenteUnoComponent implements OnInit {
     this.obtenerViajes();
   }
 
-  async verRuta(){
-    this.router.navigate(['directions'])
-    
-    
-}
+  tomarViaje(){
+  
+  }
 
   obtenerViajes(){
     this.firestore.obtenerViaje<Viajes>('Viajes').subscribe(res => {
