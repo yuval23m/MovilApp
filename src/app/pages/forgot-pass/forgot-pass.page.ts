@@ -51,13 +51,6 @@ user = {
   }
 
 
-  siguiente3(){
-    let navigationExtras: NavigationExtras={
-      state:{dato:this.dato}
-  };
-    this.router.navigate(['/login'],navigationExtras)
-  }
-
   validateModel(model: any) {
     for (var [key, value] of Object.entries(model)) {
       if (value == "") {

@@ -1,9 +1,11 @@
+import { AlertaService } from './../../services/alerta.service';
 import { FirestoreService } from './../../services/firestore.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Viajes } from 'src/app/interfaces/viajes';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForOf } from '@angular/common';
-declare const google;
+
+//mail
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-componente-uno',
@@ -19,15 +21,24 @@ export class ComponenteUnoComponent implements OnInit {
     password: ""
   };
 
-  constructor(private firestore: FirestoreService, private router : Router  ) {
+  constructor(private firestore: FirestoreService, private router : Router, private alerta : AlertaService) {
   }
 
   ngOnInit() {
     this.obtenerViajes();
   }
 
-  tomarViaje(){
-  
+  public correoViaje(e: Event) {
+    e.preventDefault();
+    this.alerta.showLoading('Guardando..')
+    emailjs.send('default_service', 'template_r9qpztx', e.target as HTMLFormElement, 'Y-J5UorBOdn39hprz')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+        this.alerta.cerrarLoading();
+        
+      }, (error) => {
+        console.log(error.text);
+      });
   }
 
   obtenerViajes(){
