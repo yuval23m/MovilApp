@@ -25,10 +25,13 @@ user = {
 
   public sendEmail(e: Event) {
     if(this.validateModel(this.user)){
+      this.alerta.showLoading('Guardando..')
       e.preventDefault();
       emailjs.sendForm('default_service', 'template_pct28kc', e.target as HTMLFormElement, 'Y-J5UorBOdn39hprz')
         .then((result: EmailJSResponseStatus) => {
           console.log(result.text);
+          this.alerta.cerrarLoading();
+          this.presentAlert()
         }, (error) => {
           console.log(error.text);
         });
@@ -39,9 +42,8 @@ user = {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'info',
-      subHeader: 'Recuperacion de contraseña',
-      message: 'se envio un correo de recuperacion para el usuario:' + " " + this.datoRecu,
+      header: 'RECUPERACIÓN DE CONTRASEÑA',
+      message: 'se envio un correo de recuperacion para el usuario:' + " " + this.user.usuario,
       buttons: ['OK'],
     });
 
