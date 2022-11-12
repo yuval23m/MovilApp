@@ -12,15 +12,15 @@
     <ion-card-header>
     </ion-card-header>
     <ion-card-content>
-      <ion-item lines="full">
-        <ion-label position="floating">Usuario</ion-label>
-        <ion-input type="text" [(ngModel)]="datoRecu"></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button expand="block" color="light"(click)="siguiente3()" (click)="presentAlert()">Recuperar</ion-button>
-        </ion-col>
-      </ion-row>
+      <form id="form" (submit)="sendEmail($event)">
+        <div class="field">
+          <ion-label position="floating" for="user">Usuario</ion-label>
+        <ion-item lines="full">
+          <ion-input type="text" name="user" id="user" [(ngModel)]="user.usuario"></ion-input>
+        </ion-item>
+        </div>
+        <ion-input expand="block" color="dark" type="submit" id="button" >Enviar</ion-input>
+      </form>
     </ion-card-content>
   </ion-card>
   

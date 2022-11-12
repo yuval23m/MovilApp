@@ -1,6 +1,10 @@
+import { AlertaService } from './../../services/alerta.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+
+//mail
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-forgot-pass',
@@ -11,7 +15,27 @@ import { AlertController } from '@ionic/angular';
 export class ForgotPassPage {
 datoRecu:string
 dato:any
-  constructor(private router:Router,private alertController: AlertController) { }
+field : string = ""
+
+user = {
+  usuario : ""
+}
+  constructor(private router:Router,private alertController: AlertController, private alerta : AlertaService) { }
+
+
+  public sendEmail(e: Event) {
+    if(this.validateModel(this.user)){
+      e.preventDefault();
+      emailjs.sendForm('default_service', 'template_pct28kc', e.target as HTMLFormElement, 'Y-J5UorBOdn39hprz')
+        .then((result: EmailJSResponseStatus) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+    }else{
+      this.alerta.presentAlert('Rellene los campos porfavor')
+    }
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -28,9 +52,18 @@ dato:any
   siguiente3(){
     let navigationExtras: NavigationExtras={
       state:{dato:this.dato}
-    };
+  };
     this.router.navigate(['/login'],navigationExtras)
   }
 
+  validateModel(model: any) {
+    for (var [key, value] of Object.entries(model)) {
+      if (value == "") {
+        this.field = key;
+        return false;
+      }
+    }
+    return true;
+  }
 
 }
