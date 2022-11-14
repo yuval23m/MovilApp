@@ -65,11 +65,13 @@ export class IndexPage implements OnInit {
     }if(localStorage.getItem('comp')=='dos'){
       this.an1()
     }
+    if(localStorage.getItem('activo')=='true'){
+      this.router.navigate(['viaje-activo'])
+    }
   }
 
   salir(){
     this.router.navigate(['login'])
-    localStorage.removeItem('auth');
-    
+    localStorage.removeItem('auth'); 
   }
 }

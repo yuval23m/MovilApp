@@ -35,6 +35,8 @@ export class ComponenteUnoComponent implements OnInit {
       .then((result: EmailJSResponseStatus) => {
         console.log(result.text);
         this.alerta.cerrarLoading();
+        localStorage.setItem('activo','true')
+        this.router.navigate(['viaje-activo'])
         
       }, (error) => {
         console.log(error.text);

@@ -37,9 +37,14 @@ const routes: Routes = [
     canActivate : [GloginGuard]
   },
   {
+    path: 'viaje-activo',
+    loadChildren: () => import('./pages/viaje-activo/viaje-activo.module').then( m => m.ViajeActivoPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
+
 
 
 
