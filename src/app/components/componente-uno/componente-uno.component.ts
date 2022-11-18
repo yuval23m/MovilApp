@@ -21,11 +21,13 @@ export class ComponenteUnoComponent implements OnInit {
     password: ""
   };
 
+
   constructor(private firestore: FirestoreService, private router : Router, private alerta : AlertaService) {
   }
 
   ngOnInit() {
     this.obtenerViajes();
+    
   }
 
   public correoViaje(e: Event) {
@@ -49,4 +51,5 @@ export class ComponenteUnoComponent implements OnInit {
       this.viajes = res;
     });
   }
+  
 }

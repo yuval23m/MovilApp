@@ -50,7 +50,12 @@ export class ComponenteDosComponent implements AfterViewInit{
         center: { lat: -33.0335543, lng: -71.534139 },
       }
     );
-  
+    const myLatLng = { lat: -33.0335543, lng: -71.534139 };
+    const marker = new google.maps.Marker({
+      position : myLatLng,
+      tiitle : 'Aqui estoy'
+    });
+    marker.setMap(map)
     this.directionsRenderer.setMap(map);
   }
 
