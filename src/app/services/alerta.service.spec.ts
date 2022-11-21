@@ -16,8 +16,8 @@ describe('AlertaService',() =>{
         service = new AlertaService(alertServiceSpy, alertLoadingSpy);
     });
 
-    describe('alerta de mensaje', ()=>{
-        it('Mensaje de alerta y loading pruebas',()=>{
+    describe('Prueba alerta y loading', ()=>{
+        it('Funcionando todo correcto',()=>{
             const service = new AlertaService(alertLoadingSpy, alertServiceSpy)
             expect(service).toBeTruthy();
         })
