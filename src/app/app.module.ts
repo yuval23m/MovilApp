@@ -39,7 +39,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
     HttpClientModule,
-    IonicStorageModule.forRoot()],
+    IonicStorageModule.forRoot(),],
 
   providers: [{ provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy ,},

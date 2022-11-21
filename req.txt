@@ -18,3 +18,7 @@ npm install @capacitor/google-maps
 IonicStorageModule.forRoot()
 //angular google maps para google.maps 
 npm i @angular/google-maps
+//
+TEST
+ ng test --include src/app/services/api.service.spec.ts
+ ng test --include src/app/services/alerta.service.spec.ts
