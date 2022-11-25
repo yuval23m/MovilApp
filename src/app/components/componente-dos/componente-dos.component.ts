@@ -77,18 +77,21 @@ export class ComponenteDosComponent implements AfterViewInit{
   }
 
   crearNuevoViaje(){
-    
     const id = this.firestore.crearId();
     const path = 'Viajes'
     this.viaje.id = id
     if(this.validateModel(this.viaje)){
-      this.alerta.showLoading('Guardando..')
-      this.firestore.crearViaje(this.viaje, path, id).then((res)=>{
-        console.log('Se agrego correctamente a la base de datos');
-        this.alerta.cerrarLoading();
-        this.alerta.presentAlert('Viaje guardado con exito!')
-        this.router.navigate(['index/uno'])
-      });
+      if(this.viaje.valor <= 3500){
+        this.alerta.showLoading('Guardando..')
+        this.firestore.crearViaje(this.viaje, path, id).then((res)=>{
+          console.log('Se agrego correctamente a la base de datos');
+          this.alerta.cerrarLoading();
+          this.alerta.presentAlert('Viaje guardado con exito!')
+          this.router.navigate(['index/uno'])
+        });
+      }else{
+        this.alerta.presentAlert('Valor maximo de $3500 permitido')
+      }
     }else{
       this.alerta.presentAlert('Rellene los campos porfavor')
     }
