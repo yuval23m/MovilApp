@@ -30,14 +30,17 @@ import {
       },
     ];
     beforeEach(() => {
-      TestBed.configureTestingModule({
+      TestBed.configureTestingModule({//se configura el entorno con el test que se quiera realizar
         providers: [ApiService],
         
         imports: [HttpClientTestingModule],
       });
   
-      apiService = TestBed.inject(ApiService);
+      apiService = TestBed.inject(ApiService);      
       httpTestingController = TestBed.inject(HttpTestingController);
+      //luego de configurar en entorno con los providers e imports
+      //luego de configurar se inyectan el provider e import y el sistema busca si 
+      // existe y esta registrado para crear una nueva instancia del servicio y lo que retorna
     });
   
     describe('getJson()', () => {
